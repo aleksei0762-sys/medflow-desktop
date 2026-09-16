@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "MedFlow CRM",
+  "version": "0.8.7",
+  "identifier": "ru.leclinic.medflow",
+  "build": {
+    "frontendDist": "../frontend"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [],
+    "security": {
+      "csp": null,
+      "capabilities": ["main-capability"]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "nsis"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "publisher": "ЛЕ Клиника",
+    "copyright": "© ЛЕ Клиника",
+    "category": "Business",
+    "shortDescription": "MedFlow CRM — рабочее место администратора",
+    "longDescription": "Настольная оболочка MedFlow CRM: открывает рабочий экран клиники в отдельном окне.",
+    "windows": {
+      "wix": {
+        "language": ["ru-RU"]
+      },
+      "nsis": {
+        "languages": ["Russian"],
+        "installMode": "perMachine"
+      }
+    }
+  }
+}
