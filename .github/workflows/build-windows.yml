@@ -1,0 +1,41 @@
+name: Сборка установщика Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Забрать код
+        uses: actions/checkout@v4
+
+      - name: Установить Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Установить Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Кэш Rust
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Установить зависимости
+        run: npm install
+
+      - name: Собрать установщик (.msi и .exe)
+        run: npm run build
+
+      - name: Выложить готовые установщики
+        uses: actions/upload-artifact@v4
+        with:
+          name: MedFlow-CRM-Windows
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/nsis/*-setup.exe
+          if-no-files-found: error
