@@ -1,0 +1,13 @@
+{
+  "name": "medflow-desktop",
+  "version": "0.8.7",
+  "private": true,
+  "description": "MedFlow CRM — настольная оболочка (Windows)",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
